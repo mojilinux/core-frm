@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: @spring.profiles.active@
+    group:
+      dev:
+        - dev
+  datasource:
+    username: root
+    password: M!y2SQL@
+
+  jpa:
+    show-sql: true
+
+server:
+  port: 8080
+

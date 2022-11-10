@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    username: admin
+    password: admin
+    url: jdbc:mysql://localhost:3306/start_kit
+
+  jpa:
+    show-sql: true
+
+server:
+  port: 8095
+

@@ -1,0 +1,1 @@
+INSERT INTO `app_user`(`id`, `created_by`, `created_date`, `last_modified_by`, `last_modified_date`, `activated`, `email`, `first_name`, `last_name`, `password`, `user_name`) VALUES (1, NULL, NULL, NULL, NULL, '1', '1', 'manager', 'admin', 'b196041733f3f8a70cd741a67185f96c1f1c88c6b06920e6c7d3e23bd17b1871a1465da9981faf79945c6c797252326ec5b8d016a85fbdd1015953676c610122', 'adminn');
