@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@PreAuthorize("hasAnyRole('ROLE_1')")
 @RestController
 @RequestMapping("user")
 public class UserController extends BaseController {

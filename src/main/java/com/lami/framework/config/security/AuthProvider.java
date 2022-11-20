@@ -1,6 +1,8 @@
 package com.lami.framework.config.security;
 
 import com.lami.framework.common.exception.ApplicationException;
+import com.lami.framework.domain.user.User;
+import com.lami.framework.domain.user.UserPrincipal;
 import com.lami.framework.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AuthProvider implements AuthenticationProvider {
+
 	@Autowired
 	private IUserService userDetailsService;
 
@@ -24,10 +27,15 @@ public class AuthProvider implements AuthenticationProvider {
 		String providedPassword = authentication.getCredentials().toString();
 		String correctPassword = user.getPassword();
 
+		if (!user.isEnabled()){
+			throw new ApplicationException("User not Active.", 401);
+		}
+
 		if (!providedPassword.equals(correctPassword)) {
 			throw new ApplicationException("Incorrect Credentials", 401);
 		}
 		Authentication authenticationResult = new UsernamePasswordAuthenticationToken(user, authentication.getCredentials(), user.getAuthorities());
+		userDetailsService.loginInformationRegistration(user.getUsername());
 		return authenticationResult;
 	}
 
