@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>com.core.framework.domain.baseInformation.BaseInformation</class-a>
+        <class-b>com.core.framework.web.viewModel.baseInformation.BaseInformationViewModel</class-b>
+        <field>
+            <a>topic</a>
+            <b>topic</b>
+        </field>
+        <field>
+            <a>parent.id</a>
+            <b>parentId</b>
+        </field>
+    </mapping>
+</mappings>

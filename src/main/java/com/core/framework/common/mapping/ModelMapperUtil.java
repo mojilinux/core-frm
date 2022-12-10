@@ -1,17 +1,21 @@
 package com.core.framework.common.mapping;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class ModelMapperUtil {
-	private static final ModelMapper modelMapper;
 
+    @Autowired
+	private static final DozerBeanMapper modelMapper;
 	static {
-		modelMapper = new ModelMapper();
-		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		modelMapper = new DozerBeanMapper();
 	}
 
 	/**
