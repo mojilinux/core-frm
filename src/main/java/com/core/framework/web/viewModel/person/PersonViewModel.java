@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PersonViewModel extends BaseEntityViewModel<Long> {
+public class PersonViewModel extends BaseEntityViewModel<String> {
     private String personCode;
     private String firstName;
     private String lastName;

@@ -4,6 +4,7 @@ import com.core.framework.domain.BaseEntity;
 import com.core.framework.domain.baseInformationHeader.BaseInformationHeader;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,7 +13,8 @@ import javax.validation.constraints.NotNull;
 @Setter
 @Entity
 @Table(name = "APP_BASE_INFORMATION")
-public class BaseInformation extends BaseEntity<Long> {
+@GenericGenerator(name = "sequence_db", strategy = "org.hibernate.id.UUIDGenerator")
+public class BaseInformation extends BaseEntity<String> {
 
     @NotNull
     @Column(name = "TOPIC", nullable = false)

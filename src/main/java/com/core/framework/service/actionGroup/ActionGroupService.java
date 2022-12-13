@@ -11,18 +11,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ActionGroupService extends GenericService<ActionGroup, Long> implements IActionGroupService {
+public class ActionGroupService extends GenericService<ActionGroup, String> implements IActionGroupService {
 
 	@Autowired
 	private IActionGroupRepository iActionGroupRepository;
 
 	@Override
-	protected IGenericRepository<ActionGroup, Long> getGenericRepo() {
+	protected IGenericRepository<ActionGroup, String> getGenericRepo() {
 		return iActionGroupRepository;
 	}
 
 	@Override
-	public List<Action> loadActionsByGroup(Long groupId) {
+	public List<Action> loadActionsByGroup(String groupId) {
 		return iActionGroupRepository.loadActionsByGroup(groupId);
 	}
 }

@@ -6,10 +6,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BaseInformationViewModel extends BaseEntityViewModel<Long> {
+public class BaseInformationViewModel extends BaseEntityViewModel<String> {
     private String topic;
     private String code;
-    private Integer parentId;
+    private String parentId;
     private boolean active;
     private boolean isDefault;
     private String description;

@@ -28,7 +28,7 @@ public class UserController extends BaseController {
 	}
 
 	@PostMapping(value = "/save")
-	public String getUser(@RequestBody UserViewModel entity) {
+	public String save(@RequestBody UserViewModel entity) {
 		return iUserService.save(ModelMapperUtil.map(entity, User.class));
 	}
 

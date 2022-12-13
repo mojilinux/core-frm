@@ -3,6 +3,7 @@ package com.core.framework.domain.coreFile;
 import com.core.framework.domain.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +14,8 @@ import java.sql.Blob;
 @Setter
 @Entity
 @Table(name = "APP_CORE_FILE")
-public class CoreFile extends BaseEntity<Long> {
+@GenericGenerator(name = "sequence_db", strategy = "org.hibernate.id.UUIDGenerator")
+public class CoreFile extends BaseEntity<String> {
 
     @Column(name = "FILE_NAME")
     private String fileName;

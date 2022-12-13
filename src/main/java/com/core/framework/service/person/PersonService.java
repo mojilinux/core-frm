@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonService extends GenericService<Person, Long> implements IPersonService {
+public class PersonService extends GenericService<Person, String> implements IPersonService {
 
     @Autowired
     private IPersonRepository iPersonRepository;
 
-    protected IGenericRepository<Person, Long> getGenericRepo() {
+    protected IGenericRepository<Person, String> getGenericRepo() {
         return iPersonRepository;
     }
 

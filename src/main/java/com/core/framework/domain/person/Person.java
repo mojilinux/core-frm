@@ -4,6 +4,7 @@ import com.core.framework.domain.BaseEntity;
 import com.core.framework.domain.baseInformation.BaseInformation;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,7 +15,8 @@ import java.sql.Blob;
 @Setter
 @Entity
 @Table(name = "APP_PERSON")
-public class Person extends BaseEntity<Long> {
+@GenericGenerator(name = "sequence_db", strategy = "org.hibernate.id.UUIDGenerator")
+public class Person extends BaseEntity<String> {
 
     @Column(name = "PERSON_CODE", nullable = false)
     private String personCode;

@@ -18,12 +18,12 @@ public class PersonController extends BaseController {
     private IPersonService iPersonService;
 
     @GetMapping(value = "/load/{id}")
-    public PersonViewModel load(@PathVariable Long id) {
+    public PersonViewModel load(@PathVariable String id) {
         return ModelMapperUtil.map(iPersonService.load(id), PersonViewModel.class);
     }
 
     @GetMapping(value = "/loadByNationalCode/{nationalCode}")
-    public PersonViewModel load(@PathVariable String nationalCode) {
+    public PersonViewModel loadByNationalCode(@PathVariable String nationalCode) {
         return ModelMapperUtil.map(iPersonService.loadByNationalCode(nationalCode), PersonViewModel.class);
     }
 
@@ -33,12 +33,12 @@ public class PersonController extends BaseController {
     }
 
     @PostMapping(value = "/save")
-    public Long getUser(@RequestBody ActionViewModel entity) {
+    public String save(@RequestBody ActionViewModel entity) {
         return iPersonService.save(ModelMapperUtil.map(entity, Person.class));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public boolean delete(@PathVariable Long id) {
+    public boolean delete(@PathVariable String id) {
         return iPersonService.deleteById(id);
     }
 

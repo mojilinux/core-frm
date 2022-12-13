@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BaseInformationHeaderViewModel extends BaseEntityViewModel<Long> {
+public class BaseInformationHeaderViewModel extends BaseEntityViewModel<String> {
     private String topic;
     private String code;
     private boolean active;

@@ -11,6 +11,8 @@
         <field>
             <a>parent.id</a>
             <b>parentId</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
         </field>
     </mapping>
 </mappings>

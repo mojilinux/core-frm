@@ -17,7 +17,7 @@ public class ActionGroupController extends BaseController {
 	private IActionGroupService iActionGroupService;
 
 	@GetMapping(value = "/load/{id}")
-	public ActionGroupViewModel load(@PathVariable Long id) {
+	public ActionGroupViewModel load(@PathVariable String id) {
 		return ModelMapperUtil.map(iActionGroupService.load(id), ActionGroupViewModel.class);
 	}
 
@@ -27,18 +27,18 @@ public class ActionGroupController extends BaseController {
 	}
 
 	@GetMapping(value = "/list/{groupId}")
-	public List<ActionGroupViewModel> userGroups(@PathVariable Long groupId) {
+	public List<ActionGroupViewModel> userGroups(@PathVariable String groupId) {
 		return ModelMapperUtil.mapList(iActionGroupService.loadActionsByGroup(groupId), ActionGroupViewModel.class);
 	}
 
 
 	@PostMapping(value = "/save")
-	public Long getUser(@RequestBody ActionGroupViewModel entity) {
+	public String save(@RequestBody ActionGroupViewModel entity) {
 		return iActionGroupService.save(ModelMapperUtil.map(entity, ActionGroup.class));
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public boolean delete(@PathVariable Long id) {
+	public boolean delete(@PathVariable String id) {
 		return iActionGroupService.deleteById(id);
 	}
 

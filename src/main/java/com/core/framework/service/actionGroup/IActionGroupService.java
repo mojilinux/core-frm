@@ -6,8 +6,8 @@ import com.core.framework.service.IGenericService;
 
 import java.util.List;
 
-public interface IActionGroupService extends IGenericService<ActionGroup, Long> {
+public interface IActionGroupService extends IGenericService<ActionGroup, String> {
 
-	List<Action> loadActionsByGroup(Long groupId);
+	List<Action> loadActionsByGroup(String groupId);
 
 }

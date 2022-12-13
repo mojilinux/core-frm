@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ActionGroupViewModel {
-	private Long id;
+	private String id;
 	private Long userId;
 	private Long groupId;
 }

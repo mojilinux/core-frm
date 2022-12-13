@@ -18,7 +18,7 @@ public class GroupController extends BaseController {
 	private IGroupService iGroupService;
 
 	@GetMapping(value = "/load/{id}")
-	public GroupViewModel load(@PathVariable Long id) {
+	public GroupViewModel load(@PathVariable String id) {
 		return ModelMapperUtil.map(iGroupService.load(id), GroupViewModel.class);
 	}
 
@@ -28,12 +28,12 @@ public class GroupController extends BaseController {
 	}
 
 	@PostMapping(value = "/save")
-	public Long getUser(@RequestBody ActionViewModel entity) {
+	public String save(@RequestBody ActionViewModel entity) {
 		return iGroupService.save(ModelMapperUtil.map(entity, Group.class));
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public boolean delete(@PathVariable Long id) {
+	public boolean delete(@PathVariable String id) {
 		return iGroupService.deleteById(id);
 	}
 

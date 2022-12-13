@@ -17,7 +17,7 @@ public class BaseInformationHeaderController {
     private IBaseInformationHeaderService iBaseInformationHeaderService;
 
     @GetMapping(value = "/load/{id}")
-    public BaseInformationHeaderViewModel load(@PathVariable Long id) {
+    public BaseInformationHeaderViewModel load(@PathVariable String id) {
         return ModelMapperUtil.map(iBaseInformationHeaderService.load(id), BaseInformationHeaderViewModel.class);
     }
 
@@ -33,12 +33,12 @@ public class BaseInformationHeaderController {
     }
 
     @PostMapping(value = "/save")
-    public Long getUser(@RequestBody BaseInformationHeaderViewModel entity) {
+    public String save(@RequestBody BaseInformationHeaderViewModel entity) {
         return iBaseInformationHeaderService.save(ModelMapperUtil.map(entity, BaseInformationHeader.class));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public boolean delete(@PathVariable Long id) {
+    public boolean delete(@PathVariable String id) {
         return iBaseInformationHeaderService.deleteById(id);
     }
 

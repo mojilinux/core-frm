@@ -1,5 +1,6 @@
 package com.core.framework.web.viewModel;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public abstract class BaseEntityViewModel<T> implements Serializable {
     private static final long serialVersionUID = 4295229462159851306L;
     private T id;
