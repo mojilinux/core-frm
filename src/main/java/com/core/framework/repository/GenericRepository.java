@@ -21,36 +21,4 @@ public abstract class GenericRepository<T extends BaseEntity, PK extends Seriali
 		return em.unwrap(Session.class);
 	}
 
-	/*@Override
-	public T load(PK entityId) {
-		Session session = getSession();
-		return session.load(getDomainClass(), entityId);
-	}
-
-	@Override
-	public List<T> getAll() {
-		Session session = getSession();
-		return session.createCriteria(this.domainClass).list();
-	}
-
-	@Transactional
-	@Override
-	public PK add(T entity) {
-		Session session = getSession();
-		return (PK) session.save(entity);
-	}
-
-	@Override
-	public void update(T entity) {
-		Session session = getSession();
-		entity = (T) session.merge(entity);
-		session.update(entity);
-	}
-
-	@Override
-	public void deleteById(PK entityId) {
-		Session session = getSession();
-		session.delete(load(entityId));
-	}*/
-
 }
