@@ -1,7 +1,7 @@
 package com.core.framework.web.controller;
 
 import com.core.framework.config.security.AuthProvider;
-import com.core.framework.config.security.HashUtil;
+import com.core.framework.utils.HashUtil;
 import com.core.framework.config.security.jwt.JWTProvider;
 import com.core.framework.config.security.jwt.JwtResponse;
 import com.core.framework.service.user.IUserService;
