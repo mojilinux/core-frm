@@ -1,7 +1,7 @@
 package com.core.framework.service.user;
 
 import com.core.framework.common.exception.ApplicationException;
-import com.core.framework.config.security.HashUtil;
+import com.core.framework.utils.HashUtil;
 import com.core.framework.domain.action.Action;
 import com.core.framework.domain.group.Group;
 import com.core.framework.domain.user.User;
