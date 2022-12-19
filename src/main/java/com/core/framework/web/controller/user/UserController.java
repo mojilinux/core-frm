@@ -37,4 +37,9 @@ public class UserController extends BaseController {
 		return iUserService.deleteById(id);
 	}
 
+	@GetMapping(value = "/authenticated/authorities")
+	public List<String> authenticatedUserAuthoritiesList() {
+		return iUserService.authenticatedUserAuthoritiesList();
+	}
+
 }

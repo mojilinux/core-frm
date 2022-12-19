@@ -11,7 +11,9 @@ import com.core.framework.repository.user.IUserRepository;
 import com.core.framework.service.GenericService;
 import com.core.framework.service.actionGroup.IActionGroupService;
 import com.core.framework.service.userGroup.IUserGroupService;
+import com.core.framework.utils.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,48 +24,58 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService extends GenericService<User, String> implements IUserService, UserDetailsService {
 
-    @Autowired
-    private IUserRepository iUserRepository;
+	@Autowired
+	private IUserRepository iUserRepository;
 
-    @Autowired
-    private IUserGroupService iUserGroupService;
+	@Autowired
+	private IUserGroupService iUserGroupService;
 
-    @Autowired
-    private IActionGroupService iActionGroupService;
+	@Autowired
+	private IActionGroupService iActionGroupService;
 
-    @Override
-    protected IGenericRepository<User, String> getGenericRepo() {
-        return iUserRepository;
-    }
+	@Override
+	protected IGenericRepository<User, String> getGenericRepo() {
+		return iUserRepository;
+	}
 
-    @Transactional
-    @Override
-    public String save(User entity) {
-        entity.setPassword(HashUtil.hashPassword(entity.getPassword()));
-        return super.save(entity);
-    }
+	@Transactional
+	@Override
+	public String save(User entity) {
+		entity.setPassword(HashUtil.hashPassword(entity.getPassword()));
+		return super.save(entity);
+	}
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = iUserRepository.findByUserName(username);
-        if (user == null) {
-            throw new ApplicationException("Incorrect Credentials", 401);
-        }
-        List<Group> groups = iUserGroupService.loadByUser(user.getId());
-        List<Action> actionsList = new ArrayList<>();
-        groups.forEach(g -> {
-            List<Action> actions = iActionGroupService.loadActionsByGroup(g.getId());
-            actionsList.addAll(actions);
-        });
-        Set<Action> set = new HashSet<>(actionsList);
-        actionsList.clear();
-        actionsList.addAll(set);
-        user.setActions(actionsList);
-        return UserMapper.userToPrincipal(user);
-    }
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		User user = iUserRepository.findByUserName(username);
+		if (user == null) {
+			throw new ApplicationException("Incorrect Credentials", 401);
+		}
+		List<Group> groups = iUserGroupService.loadByUser(user.getId());
+		List<Action> actionsList = new ArrayList<>();
+		groups.forEach(g -> {
+			List<Action> actions = iActionGroupService.loadActionsByGroup(g.getId());
+			actionsList.addAll(actions);
+		});
+		Set<Action> set = new HashSet<>(actionsList);
+		actionsList.clear();
+		actionsList.addAll(set);
+		user.setActions(actionsList);
+		return UserMapper.userToPrincipal(user);
+	}
+
+	@Override
+	public List<String> authenticatedUserAuthoritiesList() {
+		List<String> authorities = new ArrayList<>();
+		SecurityUtil.getAuthenticatedUserAuthorities().forEach(a -> {
+			authorities.add(a.getAuthority());
+		});
+		return authorities;
+	}
 
 }
