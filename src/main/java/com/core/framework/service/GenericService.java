@@ -1,6 +1,6 @@
 package com.core.framework.service;
 
-import com.core.framework.config.security.SecurityUtil;
+import com.core.framework.utils.SecurityUtil;
 import com.core.framework.domain.BaseEntity;
 import com.core.framework.domain.user.User;
 import com.core.framework.repository.IGenericRepository;
