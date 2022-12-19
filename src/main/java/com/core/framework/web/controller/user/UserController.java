@@ -6,6 +6,8 @@ import com.core.framework.service.user.IUserService;
 import com.core.framework.web.controller.BaseController;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +27,11 @@ public class UserController extends BaseController {
 	@GetMapping(value = "/list")
 	public List<UserViewModel> list() {
 		return ModelMapperUtil.mapList(iUserService.getAll(), UserViewModel.class);
+	}
+
+	@GetMapping(value = "/grid")
+	public Page<UserViewModel> page(Pageable pageable) {
+		return ModelMapperUtil.mapPage(iUserService.getAllGrid(pageable), UserViewModel.class);
 	}
 
 	@PostMapping(value = "/save")

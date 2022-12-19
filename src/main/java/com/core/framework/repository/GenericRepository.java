@@ -2,6 +2,8 @@ package com.core.framework.repository;
 
 import com.core.framework.domain.BaseEntity;
 import org.hibernate.Session;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

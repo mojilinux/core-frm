@@ -5,6 +5,7 @@ import com.core.framework.utils.HashUtil;
 import com.core.framework.config.security.jwt.JWTProvider;
 import com.core.framework.config.security.jwt.JwtResponse;
 import com.core.framework.service.user.IUserService;
+import com.core.framework.web.viewModel.user.LoginDto;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class AuthController {
 	private JWTProvider tokenProvider;
 
 	@PostMapping("/sign-in")
-	public ResponseEntity<JwtResponse> authenticateUser(@RequestBody UserViewModel entity, HttpServletRequest request) throws AuthenticationException {
+	public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginDto entity, HttpServletRequest request) throws AuthenticationException {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(entity.getUsername(), HashUtil.hashPassword(entity.getPassword())));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = tokenProvider.generateToken(authentication);
