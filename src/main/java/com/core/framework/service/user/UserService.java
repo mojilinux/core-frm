@@ -1,7 +1,6 @@
 package com.core.framework.service.user;
 
 import com.core.framework.common.exception.ApplicationException;
-import com.core.framework.utils.HashUtil;
 import com.core.framework.domain.action.Action;
 import com.core.framework.domain.group.Group;
 import com.core.framework.domain.user.User;
@@ -11,9 +10,9 @@ import com.core.framework.repository.user.IUserRepository;
 import com.core.framework.service.GenericService;
 import com.core.framework.service.actionGroup.IActionGroupService;
 import com.core.framework.service.userGroup.IUserGroupService;
+import com.core.framework.utils.HashUtil;
 import com.core.framework.utils.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService extends GenericService<User, String> implements IUserService, UserDetailsService {
