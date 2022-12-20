@@ -3,13 +3,14 @@ package com.core.framework.service.user;
 import com.core.framework.domain.user.User;
 import com.core.framework.service.IGenericService;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
 public interface IUserService extends IGenericService<User, String> {
-    //	Optional<User> findByUserName(String username);
+    UserDetails loadUserByUsername(String username);
 
-    public UserDetails loadUserByUsername(String username);
+    UserDetails loadUserByUsernameForAuthenticate(String username) throws UsernameNotFoundException;
 
-	List<String> authenticatedUserAuthoritiesList();
+    List<String> authenticatedUserAuthoritiesList();
 }

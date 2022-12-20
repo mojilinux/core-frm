@@ -5,10 +5,13 @@ import com.core.framework.domain.action.Action;
 import com.core.framework.domain.person.Person;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -48,8 +51,7 @@ public class User extends BaseEntity<String> {
     @Column(name = "PASSWORD_CREDIT")
     private Date passwordCredit;
 
-    //	@ManyToMany(fetch = FetchType.LAZY)
-    //	@JoinTable(name = "APP_USER_ACTION", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = { @JoinColumn(name = "ACTION_ID") })
+//    @Formula("SELECT A.* FROM APP_ACTION A INNER JOIN APP_ACTION_GROUP AG ON AG.ACTION_ID = A.ID INNER JOIN APP_USER_GROUP UG ON UG.GROUP_ID = AG.GROUP_ID WHERE UG.USER_ID = ID")
     @Transient
     private List<Action> actions;
 }

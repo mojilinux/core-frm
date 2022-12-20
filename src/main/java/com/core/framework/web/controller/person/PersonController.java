@@ -7,6 +7,8 @@ import com.core.framework.web.controller.BaseController;
 import com.core.framework.web.viewModel.action.ActionViewModel;
 import com.core.framework.web.viewModel.person.PersonViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +18,16 @@ import java.util.List;
 public class PersonController extends BaseController {
     @Autowired
     private IPersonService iPersonService;
+
+    @GetMapping(value = "/grid")
+    public Page<PersonViewModel> pagination(Pageable pageable) {
+        return ModelMapperUtil.mapPage(iPersonService.getAllGrid(pageable), PersonViewModel.class);
+    }
+
+    @GetMapping(value = "/list")
+    public List<PersonViewModel> list() {
+        return ModelMapperUtil.mapList(iPersonService.getAll(), PersonViewModel.class);
+    }
 
     @GetMapping(value = "/load/{id}")
     public PersonViewModel load(@PathVariable String id) {
@@ -27,13 +39,9 @@ public class PersonController extends BaseController {
         return ModelMapperUtil.map(iPersonService.loadByNationalCode(nationalCode), PersonViewModel.class);
     }
 
-    @GetMapping(value = "/list")
-    public List<PersonViewModel> list() {
-        return ModelMapperUtil.mapList(iPersonService.getAll(), PersonViewModel.class);
-    }
 
     @PostMapping(value = "/save")
-    public String save(@RequestBody ActionViewModel entity) {
+    public String save(@RequestBody PersonViewModel entity) {
         return iPersonService.save(ModelMapperUtil.map(entity, Person.class));
     }
 
