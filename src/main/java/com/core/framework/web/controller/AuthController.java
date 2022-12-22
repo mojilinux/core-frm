@@ -5,6 +5,7 @@ import com.core.framework.utils.HashUtil;
 import com.core.framework.config.security.jwt.JWTProvider;
 import com.core.framework.config.security.jwt.JwtResponse;
 import com.core.framework.service.user.IUserService;
+import com.core.framework.utils.SecurityUtil;
 import com.core.framework.web.viewModel.user.LoginDto;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,21 +22,19 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("auth")
 public class AuthController {
 
-	@Autowired
-	private IUserService iUserService;
+    @Autowired
+    private IUserService iUserService;
 
-	@Autowired
-	private AuthProvider authenticationManager;
+    @Autowired
+    private AuthProvider authenticationManager;
 
-	@Autowired
-	private JWTProvider tokenProvider;
+    @Autowired
+    private JWTProvider tokenProvider;
 
-	@PostMapping("/sign-in")
-	public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginDto entity, HttpServletRequest request) throws AuthenticationException {
-		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(entity.getUsername(), HashUtil.hashPassword(entity.getPassword())));
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		String jwt = tokenProvider.generateToken(authentication);
-		return ResponseEntity.ok(new JwtResponse(jwt));
-	}
+    @PostMapping("/sign-in")
+    public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginDto entity, HttpServletRequest request) throws AuthenticationException {
+        String jwt = authenticationManager.authenticateUser(entity, request);
+        return ResponseEntity.ok(new JwtResponse(jwt));
+    }
 
 }

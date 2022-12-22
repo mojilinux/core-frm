@@ -27,53 +27,78 @@ import java.util.Set;
 @Service
 public class UserService extends GenericService<User, String> implements IUserService, UserDetailsService {
 
-	@Autowired
-	private IUserRepository iUserRepository;
+    @Autowired
+    private IUserRepository iUserRepository;
 
-	@Autowired
-	private IUserGroupService iUserGroupService;
+    @Autowired
+    private IUserGroupService iUserGroupService;
 
-	@Autowired
-	private IActionGroupService iActionGroupService;
+    @Autowired
+    private IActionGroupService iActionGroupService;
 
-	@Override
-	protected IGenericRepository<User, String> getGenericRepo() {
-		return iUserRepository;
-	}
+    @Override
+    protected IGenericRepository<User, String> getGenericRepo() {
+        return iUserRepository;
+    }
 
-	@Transactional
-	@Override
-	public String save(User entity) {
-		entity.setPassword(HashUtil.hashPassword(entity.getPassword()));
-		return super.save(entity);
-	}
+    @Transactional
+    @Override
+    public String save(User entity) {
+        entity.setPassword(HashUtil.hashPassword(entity.getPassword()));
+        return super.save(entity);
+    }
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = iUserRepository.findByUserName(username);
-		if (user == null) {
-			throw new ApplicationException("Incorrect Credentials", 401);
-		}
-		List<Group> groups = iUserGroupService.loadByUser(user.getId());
-		List<Action> actionsList = new ArrayList<>();
-		groups.forEach(g -> {
-			List<Action> actions = iActionGroupService.loadActionsByGroup(g.getId());
-			actionsList.addAll(actions);
-		});
-		Set<Action> set = new HashSet<>(actionsList);
-		actionsList.clear();
-		actionsList.addAll(set);
-		user.setActions(actionsList);
-		return UserMapper.userToPrincipal(user);
-	}
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        User user = iUserRepository.findByUserName(username);
+        if (user == null) {
+            throw new ApplicationException("Incorrect Credentials", 401);
+        }
+        List<Group> groups = iUserGroupService.loadByUser(user.getId());
+        List<Action> actionsList = new ArrayList<>();
+        groups.forEach(g -> {
+            List<Action> actions = iActionGroupService.loadActionsByGroup(g.getId());
+            actionsList.addAll(actions);
+        });
+        Set<Action> set = new HashSet<>(actionsList);
+        actionsList.clear();
+        actionsList.addAll(set);
+        user.setActions(actionsList);
+        return UserMapper.userToPrincipal(user);
+    }
 
-	@Override
-	public List<String> authenticatedUserAuthoritiesList() {
-		List<String> authorities = new ArrayList<>();
-		SecurityUtil.getAuthenticatedUserAuthorities().forEach(a -> {
-			authorities.add(a.getAuthority());
-		});
-		return authorities;
-	}
+    @Override
+    public UserDetails loadUserByUsernameForAuthenticate(String username) throws UsernameNotFoundException {
+        User user = iUserRepository.findByUserName(username);
+        if (user == null) {
+            throw new ApplicationException("Incorrect Credentials", 401);
+        }
+        if (!user.isActivated()) {
+            throw new ApplicationException("User " + username + " was not activated", 401);
+        }
+        if (user.isLock()) {
+            throw new ApplicationException("User " + username + " Locked.", 401);
+        }
+        List<Group> groups = iUserGroupService.loadByUser(user.getId());
+        List<Action> actionsList = new ArrayList<>();
+        groups.forEach(g -> {
+            List<Action> actions = iActionGroupService.loadActionsByGroup(g.getId());
+            actionsList.addAll(actions);
+        });
+        Set<Action> set = new HashSet<>(actionsList);
+        actionsList.clear();
+        actionsList.addAll(set);
+        user.setActions(actionsList);
+        return UserMapper.userToPrincipal(user);
+    }
+
+    @Override
+    public List<String> authenticatedUserAuthoritiesList() {
+        List<String> authorities = new ArrayList<>();
+        SecurityUtil.getAuthenticatedUserAuthorities().forEach(a -> {
+            authorities.add(a.getAuthority());
+        });
+        return authorities;
+    }
 
 }

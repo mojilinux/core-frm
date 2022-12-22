@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Component
@@ -17,11 +18,10 @@ public class JWTProvider {
 	@Value("${app.jwtExpirationInMin}")
 	private int jwtExpirationInMin;
 
-	public String generateToken(Authentication authentication) {
+	public String generateToken(Authentication authentication, HttpServletRequest request) {
 		UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 		Date now = new Date();
 		Date expiryDate = new Date(now.getTime() + jwtExpirationInMin * 60000);
-
 		return Jwts.builder().setSubject(userPrincipal.getUsername()).setIssuedAt(new Date()).setExpiration(expiryDate).signWith(SignatureAlgorithm.HS256, jwtSecret).compact();
 	}
 
