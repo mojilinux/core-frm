@@ -32,7 +32,7 @@ public abstract class BaseEntity<T> implements Serializable {
     @CreatedDate
     @Column(name = "created_date", updatable = false)
     @JsonIgnore
-    private Date createdDate = Date.from(Instant.now());
+    private String createdDate;
 
     @ManyToOne
     @JoinColumn(name = "updated_by")
@@ -41,6 +41,6 @@ public abstract class BaseEntity<T> implements Serializable {
     @LastModifiedDate
     @Column(name = "updated_date")
     @JsonIgnore
-    private Date updatedDate;
+    private String updatedDate;
 
 }

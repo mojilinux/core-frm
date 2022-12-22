@@ -29,6 +29,14 @@ public class DateUtility {
         return JalCal.gregorianToJalali(new Date(), false).split(" ")[0];
     }
 
+    public static String jalaliCurrentTime() {
+        return JalCal.gregorianToJalaliTime(new Date());
+    }
+
+    public static String todayJalaliDateAndTime() {
+        return JalCal.gregorianToJalali(new Date(), false).replace("   ", " - ");
+    }
+
     public static Timestamp jalaliDateToTimestamp(String solarDate) {
         try {
             Date date = JalCal.jalaliToGregorian(solarDate);
