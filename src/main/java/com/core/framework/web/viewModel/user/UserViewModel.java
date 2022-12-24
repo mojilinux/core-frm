@@ -11,6 +11,7 @@ import java.util.Date;
 @Setter
 public class UserViewModel extends BaseEntityViewModel<String> {
 	private String  username;
+	private String  password;
 	private boolean activated;
 	private boolean isLock;
 	private boolean forceUpdate;
