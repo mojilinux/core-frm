@@ -2,6 +2,7 @@ package com.core.framework.service.user;
 
 import com.core.framework.domain.user.User;
 import com.core.framework.service.IGenericService;
+import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
@@ -13,4 +14,6 @@ public interface IUserService extends IGenericService<User, String> {
     UserDetails loadUserByUsernameForAuthenticate(String username) throws UsernameNotFoundException;
 
     List<String> authenticatedUserAuthoritiesList();
+
+    String save(UserViewModel userViewModel);
 }

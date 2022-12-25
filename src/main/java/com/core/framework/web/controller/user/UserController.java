@@ -36,7 +36,7 @@ public class UserController extends BaseController {
 
 	@PostMapping(value = "/save")
 	public String save(@RequestBody UserViewModel entity) {
-		return iUserService.save(ModelMapperUtil.map(entity, User.class));
+		return iUserService.save(entity);
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
