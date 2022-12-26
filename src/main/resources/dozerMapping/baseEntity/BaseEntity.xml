@@ -5,7 +5,7 @@
     <mapping>
         <class-a>com.core.framework.domain.BaseEntity</class-a>
         <class-b>com.core.framework.web.viewModel.BaseEntityViewModel</class-b>
-        <field type="one-way">
+<!--        <field type="one-way">
             <a>createdBy.username</a>
             <b>createdBy</b>
             <a-hint>java.lang.String</a-hint>
@@ -16,6 +16,6 @@
             <b>updatedBy</b>
             <a-hint>java.lang.String</a-hint>
             <b-hint>java.lang.String</b-hint>
-        </field>
+        </field>-->
     </mapping>
 </mappings>

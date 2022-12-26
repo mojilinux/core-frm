@@ -14,8 +14,8 @@ public abstract class BaseEntityViewModel<T> implements Serializable {
     private T id;
     private String ip = "127.0.0.1";
     private Integer version;
-    private String createdBy;
-    private String updatedBy;
+//    private String createdBy;
+//    private String updatedBy;
     private String createdDate;
     private String updatedDate;
 

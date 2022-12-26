@@ -35,6 +35,7 @@ public class UserController extends BaseController {
 	}
 
 	@PostMapping(value = "/save")
+	@ResponseBody
 	public String save(@RequestBody UserViewModel entity) {
 		return iUserService.save(entity);
 	}
