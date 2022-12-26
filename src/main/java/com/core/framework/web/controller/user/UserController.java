@@ -4,6 +4,7 @@ import com.core.framework.common.mapping.ModelMapperUtil;
 import com.core.framework.domain.user.User;
 import com.core.framework.service.user.IUserService;
 import com.core.framework.web.controller.BaseController;
+import com.core.framework.web.viewModel.user.LiteUserViewModel;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,18 +21,18 @@ public class UserController extends BaseController {
 	private IUserService iUserService;
 
 	@GetMapping(value = "/load/{id}")
-	public UserViewModel load(@PathVariable String id) {
-		return ModelMapperUtil.map(iUserService.load(id), UserViewModel.class);
+	public LiteUserViewModel load(@PathVariable String id) {
+		return ModelMapperUtil.map(iUserService.load(id), LiteUserViewModel.class);
 	}
 
 	@GetMapping(value = "/list")
-	public List<UserViewModel> list() {
-		return ModelMapperUtil.mapList(iUserService.getAll(), UserViewModel.class);
+	public List<LiteUserViewModel> list() {
+		return ModelMapperUtil.mapList(iUserService.getAll(), LiteUserViewModel.class);
 	}
 
 	@GetMapping(value = "/grid")
-	public Page<UserViewModel> page(Pageable pageable) {
-		return ModelMapperUtil.mapPage(iUserService.getAllGrid(pageable), UserViewModel.class);
+	public Page<LiteUserViewModel> page(Pageable pageable) {
+		return ModelMapperUtil.mapPage(iUserService.getAllGrid(pageable), LiteUserViewModel.class);
 	}
 
 	@PostMapping(value = "/save")
