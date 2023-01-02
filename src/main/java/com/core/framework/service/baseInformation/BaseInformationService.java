@@ -7,6 +7,8 @@ import com.core.framework.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BaseInformationService extends GenericService<BaseInformation, String> implements IBaseInformationService {
 
@@ -16,5 +18,10 @@ public class BaseInformationService extends GenericService<BaseInformation, Stri
     @Override
     protected IGenericRepository<BaseInformation, String> getGenericRepo() {
         return iBaseInformationRepository;
+    }
+
+    @Override
+    public List<BaseInformation> getAll(String headerId) {
+        return iBaseInformationRepository.getAll(headerId);
     }
 }

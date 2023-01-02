@@ -4,6 +4,7 @@ import com.core.framework.common.mapping.ModelMapperUtil;
 import com.core.framework.domain.baseInformation.BaseInformation;
 import com.core.framework.service.baseInformation.IBaseInformationService;
 import com.core.framework.web.viewModel.baseInformation.BaseInformationViewModel;
+import com.core.framework.web.viewModel.baseInformationHeader.BaseInformationHeaderViewModel;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,11 @@ public class BaseInformationController {
     @GetMapping(value = "/list")
     public List<BaseInformationViewModel> list() {
         return ModelMapperUtil.mapList(iBaseInformationService.getAll(), BaseInformationViewModel.class);
+    }
+
+    @GetMapping(value = "/list/{headerId}")
+    public List<BaseInformationViewModel> list(@PathVariable String headerId) {
+        return ModelMapperUtil.mapList(iBaseInformationService.getAll(headerId), BaseInformationViewModel.class);
     }
 
     @PostMapping(value = "/save")
