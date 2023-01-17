@@ -4,13 +4,10 @@ import com.core.framework.common.mapping.ModelMapperUtil;
 import com.core.framework.domain.baseInformationHeader.BaseInformationHeader;
 import com.core.framework.service.baseInformationHeader.IBaseInformationHeaderService;
 import com.core.framework.web.viewModel.baseInformationHeader.BaseInformationHeaderViewModel;
-import com.core.framework.web.viewModel.user.LiteUserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("baseInformationHeader")

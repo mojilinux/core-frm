@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping map-null="false">
+        <class-a>com.core.framework.domain.group.Group</class-a>
+        <class-b>com.core.framework.web.viewModel.group.GroupViewModel</class-b>
+        <field>
+            <a>name</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a>active</a>
+            <b>active</b>
+            <a-hint>java.lang.Boolean</a-hint>
+            <b-hint>java.lang.Boolean</b-hint>
+        </field>
+    </mapping>
+</mappings>
