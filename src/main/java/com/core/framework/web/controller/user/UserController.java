@@ -1,9 +1,10 @@
 package com.core.framework.web.controller.user;
 
 import com.core.framework.common.mapping.ModelMapperUtil;
-import com.core.framework.domain.user.User;
 import com.core.framework.service.user.IUserService;
+import com.core.framework.utils.SecurityUtil;
 import com.core.framework.web.controller.BaseController;
+import com.core.framework.web.viewModel.user.AuthenticatedUserViewModel;
 import com.core.framework.web.viewModel.user.LiteUserViewModel;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,13 @@ public class UserController extends BaseController {
 	@GetMapping(value = "/authenticated/authorities")
 	public List<String> authenticatedUserAuthoritiesList() {
 		return iUserService.authenticatedUserAuthoritiesList();
+	}
+
+	@GetMapping(value = "/authenticated/info")
+	public AuthenticatedUserViewModel authenticatedUserDetails() {
+		AuthenticatedUserViewModel authenticatedUser = ModelMapperUtil.map(SecurityUtil.getAuthenticatedUser(), AuthenticatedUserViewModel.class);
+		authenticatedUser.setAuthorities(iUserService.authenticatedUserAuthoritiesList());
+		return authenticatedUser;
 	}
 
 }
