@@ -38,7 +38,7 @@ build:
   
   script:
 
-    - mvn clean mvn package -B -e -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE
+    - mvn clean package -B -e -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE
   
   artifacts:
 
