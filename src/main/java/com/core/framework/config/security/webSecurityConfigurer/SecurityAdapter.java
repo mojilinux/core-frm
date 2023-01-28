@@ -1,4 +1,4 @@
-package com.core.framework.config.security;
+package com.core.framework.config.security.webSecurityConfigurer;
 
 import com.core.framework.config.security.jwt.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
