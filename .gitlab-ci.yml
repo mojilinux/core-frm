@@ -82,12 +82,13 @@ deploy-job:      # This job runs in the deploy stage.
 #  script:
 #    - mvn $MAVEN_CLI_OPTS deploy
 
-#image: node:16-alpine
+
 
 #stages:
 #  - update-production
 
 deploy:
+  image: node:16-alpine
   stage: update-production
   only:
     - master
