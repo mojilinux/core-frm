@@ -19,7 +19,7 @@ FROM openjdk:8-alpine
 
 WORKDIR /app
 
-COPY --from=MAVEN_BUILD/build/target/core-framework-*.jar /app/core-framework.jar
+COPY --from=MAVEN_BUILD /build/target/core-framework-*.jar /app/core-framework.jar
 
 ENTRYPOINT ["java", "-jar", "core-framework.jar"]
 
