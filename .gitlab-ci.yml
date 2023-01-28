@@ -15,11 +15,77 @@
 # https://docs.gitlab.com/ee/development/cicd/templates.html
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
-
-image: node:16-alpine
+services:
+  - docker:19.03.7-dind
 
 stages:
+  - build jar
+  
+  #- build and push docker image
+
+  - deploy
+
   - update-production
+  
+build:
+  image: maven:3.6.3-jdk-11-slim
+  
+  stage: build jar
+  
+  # before_script:
+
+    # - source .${CI_COMMIT_REF_NAME}.env
+  
+  script:
+
+    - mvn clean package -B -e -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE
+  
+  artifacts:
+
+     paths:
+
+       - target/*.jar
+  
+# docker build:
+
+#   image: docker:stable
+  
+#   stage: build and push docker image
+  
+#   before_script:
+
+#     - source .${CI_COMMIT_REF_NAME}.env
+  
+#   script:
+
+#     - docker build --build-arg SPRING_ACTIVE_PROFILE=$SPRING_ACTIVE_PROFILE -t $DOCKER_REPO .
+#    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD docker.io
+#    - docker push $DOCKER_REPO
+
+
+deploy-job:      # This job runs in the deploy stage.
+  image: docker:latest
+  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  services:
+        - name: docker:dind
+  script:
+    - echo "Deploying application..."
+    - docker build -t registry.gitlab.com/arrivall/core-framework . -f Dockerfile
+    - echo "Login to gitlab..."
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo "Pushing to gitlab..."
+    - docker push registry.gitlab.com/arrivall/core-framework
+    - echo "Application successfully deployed."
+#build:
+#  stage: build
+#  when: manual
+#  script:
+#    - mvn $MAVEN_CLI_OPTS deploy
+
+#image: node:16-alpine
+
+#stages:
+#  - update-production
 
 deploy:
   stage: update-production

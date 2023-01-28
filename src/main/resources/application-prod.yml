@@ -1,11 +1,18 @@
 spring:
   datasource:
-    username: admin
-    password: admin
-    url: jdbc:mysql://localhost:3306/start_kit
+    driver-class-name: org.postgresql.Driver
+    username: root
+    password: R5GPQQK1Cs49vqok6LodvEIL
+    url: jdbc:postgresql://alfie.iran.liara.ir:30688/postgres
 
   jpa:
     show-sql: true
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL10Dialect
+        hibernate.ddl-auto: create
+
 
 server:
   port: 8095
