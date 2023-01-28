@@ -19,7 +19,7 @@ FROM openjdk:8-alpine
 
 WORKDIR /app
 
-COPY --from=MAVEN_BUILD /build/target/ums-*.jar /app/ums.jar
+COPY --from=MAVEN_BUILD/build/target/core-framework-*.jar /app/core-framework.jar
 
-ENTRYPOINT ["java", "-jar", "ums.jar"]
+ENTRYPOINT ["java", "-jar", "core-framework.jar"]
 
