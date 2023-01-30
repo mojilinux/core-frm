@@ -38,7 +38,7 @@ build:
   
   script:
 
-    - mvn clean install -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE && mvn package -B -e -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE
+    - mvn clean package -B -e -Dspring.profiles.active=$SPRING_ACTIVE_PROFILE
   
   artifacts:
 
@@ -82,16 +82,17 @@ deploy-job:      # This job runs in the deploy stage.
 #  script:
 #    - mvn $MAVEN_CLI_OPTS deploy
 
-#image: node:16-alpine
+
 
 #stages:
 #  - update-production
 
 deploy:
+  image: node:16-alpine
   stage: update-production
   only:
     - master
   script:
-    - npm i -g @liara/cli@3
+    - npm i -g @liara/cli@3.0.1
     - export http_proxy=http://proxy.liara.ir:6666
-    - liara deploy --app core-frm --api-token $TOKEN --detach
+    - liara deploy --app core-frm --api-token $TOKEN -p 8080 --detach
