@@ -24,4 +24,14 @@ public class BaseInformationService extends GenericService<BaseInformation, Stri
     public List<BaseInformation> getAll(String headerId) {
         return iBaseInformationRepository.getAll(headerId);
     }
+
+    @Override
+    public List<BaseInformation> rootListByHeaderId(String headerId) {
+        return iBaseInformationRepository.rootList(headerId);
+    }
+
+    @Override
+    public List<BaseInformation> listByMasterId(String id) {
+        return iBaseInformationRepository.listByMasterId(id);
+    }
 }

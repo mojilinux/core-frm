@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>com.core.framework.domain.person.Person</class-a>
+        <class-b>com.core.framework.web.viewModel.person.PersonViewModel</class-b>
+        <field>
+            <a>gender.id</a>
+            <b>genderId</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field>
+            <a>birthPlaceState.id</a>
+            <b>birthPlaceStateId</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field>
+            <a>birthPlaceCity.id</a>
+            <b>birthPlaceCityId</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>gender.topic</a>
+            <b>genderTopic</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>gender.code</a>
+            <b>genderCode</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+
+        <field>
+            <a>marriageStatus.id</a>
+            <b>marriageStatusId</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>marriageStatus.topic</a>
+            <b>marriageStatusTopic</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>marriageStatus.code</a>
+            <b>marriageStatusCode</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+
+        <field>
+            <a>educationLevel.id</a>
+            <b>educationLevelId</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>educationLevel.topic</a>
+            <b>educationLevelTopic</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>educationLevel.code</a>
+            <b>educationLevelCode</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+
+        <field type="one-way">
+            <a>birthPlaceState.topic</a>
+            <b>birthPlaceStateTopic</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>birthPlaceState.code</a>
+            <b>birthPlaceStateCode</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+
+
+        <field type="one-way">
+            <a>birthPlaceCity.topic</a>
+            <b>birthPlaceCityTopic</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>birthPlaceCity.code</a>
+            <b>birthPlaceCityCode</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+
+    </mapping>
+</mappings>
