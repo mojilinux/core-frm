@@ -21,5 +21,5 @@ WORKDIR /app
 
 COPY --from=MAVEN_BUILD /build/target/ums-*.jar /app/ums.jar
 
-ENTRYPOINT ["java", "-jar", "ums.jar"]
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "ums.jar"]
 
