@@ -9,4 +9,8 @@ public interface IBaseInformationService extends IGenericService<BaseInformation
 
 
     List<BaseInformation> getAll(String headerId);
+
+    List<BaseInformation> rootListByHeaderId(String headerId);
+
+    List<BaseInformation> listByMasterId(String id);
 }
