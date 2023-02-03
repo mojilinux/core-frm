@@ -21,5 +21,7 @@ WORKDIR /app
 
 COPY --from=MAVEN_BUILD /build/target/core-framework-*.jar /app/core-framework.jar
 
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "ums.jar"]
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=prod", "core-framework.jar"]
 

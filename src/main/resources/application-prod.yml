@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    username: qvszootl
-    password: QPqI4n6w5LPmmSEkgDtpzH6G6fUrQ3BP
-    url: jdbc:postgresql://dumbo.db.elephantsql.com:5432/qvszootl
+    username: root
+    password: R5GPQQK1Cs49vqok6LodvEIL
+    url: jdbc:postgresql://alfie.iran.liara.ir:30688/postgres
 
   jpa:
     show-sql: true
@@ -11,9 +11,9 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
-        hibernate.ddl-auto: create
+        hibernate.ddl-auto: update
 
 
-server:
-  port: 8095
+#server:
+#  port: 8095
 
