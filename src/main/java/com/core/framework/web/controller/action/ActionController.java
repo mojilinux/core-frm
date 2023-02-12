@@ -19,7 +19,7 @@ public class ActionController extends BaseController {
     private IActionService iActionService;
 
     @GetMapping(value = "/load/{id}")
-    public ActionViewModel load(@PathVariable Long id) {
+    public ActionViewModel load(@PathVariable String id) {
         return ModelMapperUtil.map(iActionService.load(id), ActionViewModel.class);
     }
 
@@ -29,12 +29,12 @@ public class ActionController extends BaseController {
     }
 
     @PostMapping(value = "/save")
-    public Long save(@RequestBody ActionViewModel entity) {
+    public String save(@RequestBody ActionViewModel entity) {
         return iActionService.save(ModelMapperUtil.map(entity, Action.class));
     }
 
     @DeleteMapping(value = "/delete/{id}")
-    public boolean delete(@PathVariable Long id) {
+    public boolean delete(@PathVariable String id) {
         return iActionService.deleteById(id);
     }
 

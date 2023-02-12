@@ -11,8 +11,9 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
+@GenericGenerator(name = "sequence_db", strategy = "org.hibernate.id.UUIDGenerator")
 @Table(name = "APP_ACTION")
-public class Action extends BaseEntity<Long> {
+public class Action extends BaseEntity<String> {
 
     @NotNull
     @Column(name = "title", nullable = false)
