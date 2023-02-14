@@ -5,14 +5,10 @@ import com.core.framework.domain.action.Action;
 import com.core.framework.domain.person.Person;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -30,7 +26,7 @@ public class User extends BaseEntity<String> {
     private String password;
 
     @OneToOne
-    @JoinColumn(name = "Person_ID")
+    @JoinColumn(name = "Person_ID", unique = true, updatable = false)
     private Person person;
 
     @Column(name = "ACTIVATED")
@@ -43,15 +39,15 @@ public class User extends BaseEntity<String> {
     private boolean forceUpdate = false;
 
     @Column(name = "USER_LOCK_DATE")
-    private Date userLockDate;
+    private String userLockDate;
 
     @Column(name = "USER_CREDIT")
-    private Date userCredit;
+    private String userCredit;
 
     @Column(name = "PASSWORD_CREDIT")
-    private Date passwordCredit;
+    private String passwordCredit;
 
-//    @Formula("SELECT A.* FROM APP_ACTION A INNER JOIN APP_ACTION_GROUP AG ON AG.ACTION_ID = A.ID INNER JOIN APP_USER_GROUP UG ON UG.GROUP_ID = AG.GROUP_ID WHERE UG.USER_ID = ID")
+    //    @Formula("SELECT A.* FROM APP_ACTION A INNER JOIN APP_ACTION_GROUP AG ON AG.ACTION_ID = A.ID INNER JOIN APP_USER_GROUP UG ON UG.GROUP_ID = AG.GROUP_ID WHERE UG.USER_ID = ID")
     @Transient
     private List<Action> actions;
 }

@@ -14,10 +14,20 @@
         <field>
             <a>person.firstName</a>
             <b>firstName</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
         </field>
         <field>
             <a>person.lastName</a>
             <b>lastName</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
+        </field>
+        <field type="one-way">
+            <a>person.personCode</a>
+            <b>personCode</b>
+            <a-hint>java.lang.String</a-hint>
+            <b-hint>java.lang.String</b-hint>
         </field>
     </mapping>
 </mappings>

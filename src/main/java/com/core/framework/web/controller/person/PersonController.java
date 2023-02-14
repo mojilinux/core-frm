@@ -4,6 +4,7 @@ import com.core.framework.common.mapping.ModelMapperUtil;
 import com.core.framework.domain.person.Person;
 import com.core.framework.service.person.IPersonService;
 import com.core.framework.web.controller.BaseController;
+import com.core.framework.web.viewModel.person.LimitedPersonViewModel;
 import com.core.framework.web.viewModel.person.PersonViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,11 @@ public class PersonController extends BaseController {
     @GetMapping(value = "/list")
     public List<PersonViewModel> list() {
         return ModelMapperUtil.mapList(iPersonService.getAll(), PersonViewModel.class);
+    }
+
+    @GetMapping(value = "/unRegisteredPersons")
+    public List<LimitedPersonViewModel> unRegisteredPersons() {
+        return ModelMapperUtil.mapList(iPersonService.unRegisteredPersons(), LimitedPersonViewModel.class);
     }
 
     @GetMapping(value = "/load/{id}")

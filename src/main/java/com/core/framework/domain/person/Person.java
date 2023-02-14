@@ -18,7 +18,7 @@ import java.sql.Blob;
 @GenericGenerator(name = "sequence_db", strategy = "org.hibernate.id.UUIDGenerator")
 public class Person extends BaseEntity<String> {
 
-    @Column(name = "PERSON_CODE")
+    @Column(name = "PERSON_CODE", updatable = false)
     private String personCode;
 
     @Column(name = "FIRST_NAME", nullable = false)

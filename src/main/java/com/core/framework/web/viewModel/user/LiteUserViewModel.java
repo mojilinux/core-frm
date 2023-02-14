@@ -4,15 +4,20 @@ import com.core.framework.web.viewModel.BaseEntityViewModel;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Getter
 @Setter
 public class LiteUserViewModel extends BaseEntityViewModel<String> {
     private String username;
+    private String personCode;
     private String personId;
     private String firstName;
     private String lastName;
+    private String fullName;
     private boolean activated;
+    private boolean forceUpdate;
     private boolean isLock;
+
+    public String getFullName() {
+        return this.firstName + ' ' + this.lastName;
+    }
 }
