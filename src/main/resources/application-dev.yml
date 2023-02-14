@@ -18,11 +18,14 @@
 
 spring:
   datasource:
-    username: frm
-    password: frm@123456
-    url: jdbc:mysql://77.68.25.159:3306/frm
+    username: root
+    password:
+#    username: frm
+#    password: frm@123456
+#    url: jdbc:mysql://77.68.25.159:3306/frm
+    url: jdbc:mysql://localhost:3306/corm
   jpa:
-    hibernate.ddl-auto: none
+    hibernate.ddl-auto: update
     generate-ddl: false
     show-sql: true
     properties:
