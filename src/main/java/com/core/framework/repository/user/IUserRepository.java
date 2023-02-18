@@ -9,4 +9,5 @@ public interface IUserRepository extends IGenericRepository<User, String> {
 
     @Query(value = "select e from User e where e.username = :username")
     User findByUserName(@Param("username") String username);
+
 }

@@ -19,4 +19,6 @@ public interface IUserService extends IGenericService<User, String> {
     String signUp(UserViewModel userViewModel);
 
     boolean unLock(String id);
+
+    boolean checkUserNameExists(String username);
 }

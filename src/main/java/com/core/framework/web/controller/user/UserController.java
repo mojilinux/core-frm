@@ -76,4 +76,8 @@ public class UserController extends BaseController {
         return authenticatedUser;
     }
 
+    @GetMapping(value = "/checkUserNameExists/{username}")
+    public boolean checkUserNameExists(@PathVariable String username) {
+        return iUserService.checkUserNameExists(username);
+    }
 }
