@@ -50,4 +50,10 @@ public class User extends BaseEntity<String> {
     //    @Formula("SELECT A.* FROM APP_ACTION A INNER JOIN APP_ACTION_GROUP AG ON AG.ACTION_ID = A.ID INNER JOIN APP_USER_GROUP UG ON UG.GROUP_ID = AG.GROUP_ID WHERE UG.USER_ID = ID")
     @Transient
     private List<Action> actions;
+
+    @ElementCollection(targetClass = Role.class)
+    @CollectionTable(name = "APP_USER_ROLE", joinColumns = @JoinColumn(name = "ID"))
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ROLE")
+    private List<Role> roles;
 }

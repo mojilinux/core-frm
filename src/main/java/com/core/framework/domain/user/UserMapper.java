@@ -11,6 +11,7 @@ public class UserMapper {
 
 		UserPrincipal userPrincipal = new UserPrincipal();
 		List<SimpleGrantedAuthority> authorities = user.getActions().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getCode())).collect(Collectors.toList());
+		authorities.addAll(user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList()));
 		userPrincipal.setUsername(user.getUsername());
 		userPrincipal.setPassword(user.getPassword());
 		userPrincipal.setAuthorities(authorities);
