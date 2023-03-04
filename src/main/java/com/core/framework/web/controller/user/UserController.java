@@ -69,6 +69,11 @@ public class UserController extends BaseController {
         return iUserService.authenticatedUserAuthoritiesList();
     }
 
+    @GetMapping(value = "/authenticated/roles")
+    public List<String> authenticatedUserRoles() {
+        return iUserService.authenticatedUserRoles();
+    }
+
     @GetMapping(value = "/authenticated/info")
     public AuthenticatedUserViewModel authenticatedUserDetails() {
         AuthenticatedUserViewModel authenticatedUser = ModelMapperUtil.map(SecurityUtil.getAuthenticatedUser(), AuthenticatedUserViewModel.class);
