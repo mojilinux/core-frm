@@ -14,6 +14,7 @@ public class UserMapper {
 		authorities.addAll(user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role)).collect(Collectors.toList()));
 		userPrincipal.setUsername(user.getUsername());
 		userPrincipal.setPassword(user.getPassword());
+		userPrincipal.setPerson(user.getPerson());
 		userPrincipal.setAuthorities(authorities);
 		userPrincipal.setId(user.getId());
 		return userPrincipal;

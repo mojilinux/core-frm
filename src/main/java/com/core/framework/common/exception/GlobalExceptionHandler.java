@@ -1,5 +1,6 @@
 package com.core.framework.common.exception;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import javax.persistence.NoResultException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -23,5 +25,15 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = EmptyResultDataAccessException.class)
 	public ResponseEntity emptyResultDataAccessException(EmptyResultDataAccessException exception) {
 		return new ResponseEntity<>("", HttpStatus.valueOf(401));
+	}
+
+	@ExceptionHandler(value = SQLIntegrityConstraintViolationException.class)
+	public ResponseEntity constraintViolationException(SQLIntegrityConstraintViolationException exception) {
+		return new ResponseEntity<>("رکورد تکراری", HttpStatus.valueOf(500));
+	}
+
+	@ExceptionHandler(value = ConstraintViolationException.class)
+	public ResponseEntity constraintViolationException(ConstraintViolationException exception) {
+		return new ResponseEntity<>("رکورد تکراری", HttpStatus.valueOf(500));
 	}
 }
