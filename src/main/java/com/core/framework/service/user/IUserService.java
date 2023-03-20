@@ -15,7 +15,9 @@ public interface IUserService extends IGenericService<User, String> {
 
     List<String> authenticatedUserAuthoritiesList();
 
-    String save(User user);
+	List<String> authenticatedUserRoles();
+
+	String save(User user);
     String signUp(UserViewModel userViewModel);
 
     boolean unLock(String id);
