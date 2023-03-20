@@ -6,7 +6,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserGroupViewModel {
-	private Long id;
-	private Long userId;
-	private Long groupId;
+	private String id;
+	private String userId;
+	private String personCode;
+	private String userName;
+	private String firstName;
+	private String lastName;
+	private String groupId;
 }
