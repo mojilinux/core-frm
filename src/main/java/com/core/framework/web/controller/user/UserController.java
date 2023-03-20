@@ -80,4 +80,9 @@ public class UserController extends BaseController {
     public boolean checkUserNameExists(@PathVariable String username) {
         return iUserService.checkUserNameExists(username);
     }
+
+    @PostMapping(value = "/changePassword")
+    public boolean changePassword(@RequestBody UserViewModel entity) {
+        return iUserService.changePassword(entity.getId(),entity.getPassword());
+    }
 }

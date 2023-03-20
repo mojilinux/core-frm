@@ -21,4 +21,6 @@ public interface IUserService extends IGenericService<User, String> {
     boolean unLock(String id);
 
     boolean checkUserNameExists(String username);
+
+    boolean changePassword(String userId, String password);
 }

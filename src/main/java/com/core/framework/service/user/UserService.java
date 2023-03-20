@@ -147,4 +147,13 @@ public class UserService extends GenericService<User, String> implements IUserSe
             return true;
         }
     }
+
+    @Override
+    @Transactional
+    public boolean changePassword(String userId, String password) {
+        User currentUser = iUserRepository.findById(userId).get();
+        currentUser.setPassword(HashUtil.hashPassword(password));
+        super.save(currentUser);
+        return true;
+    }
 }
