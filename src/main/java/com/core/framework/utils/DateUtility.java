@@ -50,6 +50,9 @@ public class DateUtility {
 	}
 
 	public static String jalaliToMiladi(String solarDate) {
+		if (solarDate == null || solarDate.equals("null")) {
+			return null;
+		}
 		Timestamp timestamp = jalaliDateToTimestamp(solarDate);
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		return dateFormat.format(timestamp);
@@ -99,9 +102,24 @@ public class DateUtility {
 		return diffMinutes;
 	}
 
-	public static void main(String[] args) {
+	public static Date jalaliToDate(String jalali) {
+		try {
+			if (jalali == null || jalali == "") {
+				return null;
+			}
+			return JalCal.jalaliToGregorian(jalali);
+		}
+		catch (DateException e) {
+			throw new RuntimeException(e);
+		}
+	}
 
-		System.out.println(getTimeFromDate(new Date()));
+	public static void main(String[] args) throws ParseException {
+		Date date = jalaliToDate("1401/12/09");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+		String s = jalaliToMiladi("1401/12/09");
+		System.out.println(s);
 	}
 
 }

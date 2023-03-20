@@ -23,9 +23,9 @@ spring:
 #    username: frm
 #    password: frm@123456
 #    url: jdbc:mysql://77.68.25.159:3306/frm
-    url: jdbc:mysql://localhost:3306/corm
+    url: jdbc:mysql://localhost:3306/cfw
   jpa:
-    hibernate.ddl-auto: update
+    hibernate.ddl-auto: none
     generate-ddl: false
     show-sql: true
     properties:
