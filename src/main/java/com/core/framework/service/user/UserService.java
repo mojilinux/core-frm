@@ -166,14 +166,4 @@ public class UserService extends GenericService<User, String> implements IUserSe
         super.save(currentUser);
         return true;
     }
-	@Override
-	public boolean checkUserNameExists(String username) {
-		User suggestUserName = iUserRepository.findByUserName(username);
-		if (suggestUserName == null) {
-			return false;
-		}
-		else {
-			return true;
-		}
-	}
 }
