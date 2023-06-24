@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -115,11 +114,13 @@ public class DateUtility {
 	}
 
 	public static void main(String[] args) throws ParseException {
-		Date date = jalaliToDate("1401/12/09");
+		Date date = jalaliToDate("1402/1/1");
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-
+		date.setHours(23);
+		date.setMinutes(59);
+		date.setSeconds(59);
 		String s = jalaliToMiladi("1401/12/09");
-		System.out.println(s);
+		System.out.println(date);
 	}
 
 }

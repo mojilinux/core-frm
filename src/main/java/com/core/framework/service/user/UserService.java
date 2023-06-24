@@ -15,6 +15,7 @@ import com.core.framework.service.person.IPersonService;
 import com.core.framework.service.userGroup.IUserGroupService;
 import com.core.framework.utils.HashUtil;
 import com.core.framework.utils.SecurityUtil;
+import com.core.framework.web.viewModel.user.ChangePasswordDto;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -148,22 +149,34 @@ public class UserService extends GenericService<User, String> implements IUserSe
 		return true;
 	}
 
-    @Override
-    public boolean checkUserNameExists(String username) {
-        User suggestUserName = iUserRepository.findByUserName(username);
-        if (suggestUserName == null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+	@Override
+	public boolean checkUserNameExists(String username) {
+		User suggestUserName = iUserRepository.findByUserName(username);
+		if (suggestUserName == null) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
-    @Override
-    @Transactional
-    public boolean changePassword(String userId, String password) {
-        User currentUser = iUserRepository.findById(userId).get();
-        currentUser.setPassword(HashUtil.hashPassword(password));
-        super.save(currentUser);
-        return true;
-    }
+	@Override
+	@Transactional
+	public boolean changePassword(ChangePasswordDto changePasswordDto) {
+		String authenticatedUserId = SecurityUtil.getAuthenticatedUserId();
+		User currentUser = load(authenticatedUserId);
+		if (currentUser.getPassword().equals(HashUtil.hashPassword(changePasswordDto.getOldPass()))) {
+			if (changePasswordDto.getNewPass().equals(changePasswordDto.getRePass())) {
+				currentUser.setPassword(HashUtil.hashPassword(changePasswordDto.getNewPass()));
+				super.save(currentUser);
+				return true;
+			}
+			else {
+				throw new ApplicationException("پسورد جدید با تکرار آن مطابقت ندارد.");
+			}
+		}
+		else {
+			throw new ApplicationException("گذرواژه اشتباه است.");
+		}
+	}
 }

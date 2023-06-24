@@ -6,6 +6,7 @@ import com.core.framework.service.user.IUserService;
 import com.core.framework.utils.SecurityUtil;
 import com.core.framework.web.controller.BaseController;
 import com.core.framework.web.viewModel.user.AuthenticatedUserViewModel;
+import com.core.framework.web.viewModel.user.ChangePasswordDto;
 import com.core.framework.web.viewModel.user.LiteUserViewModel;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,7 @@ public class UserController extends BaseController {
     }
 
     @PostMapping(value = "/changePassword")
-    public boolean changePassword(@RequestBody UserViewModel entity) {
-        return iUserService.changePassword(entity.getId(),entity.getPassword());
+    public boolean changePassword(@RequestBody ChangePasswordDto entity) {
+        return iUserService.changePassword(entity);
     }
 }

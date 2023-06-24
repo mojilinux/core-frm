@@ -2,6 +2,7 @@ package com.core.framework.service.user;
 
 import com.core.framework.domain.user.User;
 import com.core.framework.service.IGenericService;
+import com.core.framework.web.viewModel.user.ChangePasswordDto;
 import com.core.framework.web.viewModel.user.UserViewModel;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,5 +25,5 @@ public interface IUserService extends IGenericService<User, String> {
 
     boolean checkUserNameExists(String username);
 
-    boolean changePassword(String userId, String password);
+    boolean changePassword(ChangePasswordDto  changePasswordDto);
 }
